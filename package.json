@@ -1,0 +1,20 @@
+{
+  "name": "cryptomoney-api",
+  "version": "1.0.0",
+  "description": "Consulta de criptomonedas",
+  "main": "index.js",
+  "dependencies": {
+    "@koa/cors": "^2.2.3",
+    "axios": "^0.18.0",
+    "koa": "^2.6.2",
+    "koa-json": "^2.0.2",
+    "redis": "^2.8.0",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Darwin Serrano <darwinserrano@gmail.com>",
+  "license": "ISC"
+}
