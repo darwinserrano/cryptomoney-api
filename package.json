@@ -16,5 +16,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Darwin Serrano <darwinserrano@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "url": "https://github.com/darwinserrano/cryptomoney-api"
+  }
 }
