@@ -23,8 +23,8 @@ const loadDataOnRedis = async () => {
     client.hget('symbols', row.id, (err, record) => {
       const prevRecord = JSON.parse(record)
       if (!prevRecord || prevRecord.current_price !== row.current_price) {
-        client.hset('symbols', row.id, JSON.stringify(row), redis.print)
         client.publish('cryptomoney-realtime', JSON.stringify(row))
+        client.hset('symbols', row.id, JSON.stringify(row), redis.print)
       }
 
     })
