@@ -1,20 +1,22 @@
 const redis = require("redis");
-const client = redis.createClient();
+
 
 const socketSend = (io) => {
-  let socket = null
-  io.on('connection', (socketNew) => {
-    socket = socketNew
-    console.log('a user connected');
+  io.on('connection', (websocket) => {
+    console.log('Usuario conectado')
+
+    const redisClient = redis.createClient();
+    redisClient.subscribe('cryptomoney-realtime')
+    redisClient.on('message', (channel, message) => {
+      console.log(JSON.parse(message).id);
+      websocket.broadcast.emit(channel, message)
+    })
+
+    websocket.on('disconnect', () => {
+      redisClient.unsubscribe()
+      console.log('Usuario desconectado')
+    })
   });
-
-  client.subscribe('cryptomoney-realtime')
-
-  client.on('message', (channel, message) => {
-    console.log(JSON.parse(message).id);
-    if (socket) socket.emit(channel, message)
-  })
-
 }
 
 module.exports = socketSend
